@@ -76,12 +76,6 @@ Arguments Explanation:
 given, the trainer will discard the `hypes_yaml` and load the `config.yaml` in the checkpoint folder.
 - `half`(optional): if specified, hybrid-precision training will be used to save memory occupation.
 
-<strong>Important Notes for Training:</strong>
-1. When you train from scratch, please first set `async` and `loc_err` to false to train on perfect setting. Also, set `compression` to 0 at beginning.
-2. After the model on perfect setting converged, set `compression`  to 32 (please change the config yaml in your trained model directory) and continue training on the perfect setting for another 1-2 epoches.
-3. Next, set `async` to true, `async_mode` to 'real', `async_overhead` to 200 or 300, `loc_err` to true, `xyz_std` to 0.2, `rpy_std` to 0.2, and then continue training your model on this noisy setting. Please note that you are free to change these noise setting during training to obtain better performance.
-4. Eventually, use the model fine-tuned on noisy setting as the test model for both perfect and noisy setting.
-
 ### Step2. Generate the offline intermediate features
 After obtaining the models trained on homo setting, we need to save the intermediate features that each model generate to study later domain gap issue.
 To do this:
